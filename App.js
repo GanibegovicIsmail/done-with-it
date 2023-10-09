@@ -1,18 +1,22 @@
 import { Text, View, StyleSheet } from 'react-native'
 import React from 'react'
+import Task from './components/Task'
 
 export default function App() {
     return (
       <View style={styles.container}>
 
-        {/* Todays tasks */}
+      {/* Todays tasks */}
         <View style={styles.taskWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
+          <Text style={styles.sectionTitle}>Today's tasks</Text>
+
+            <View style={styles.items}>
+            {/* This is where the tasks will be */}
+              <Task/>
+            </View>
+
         </View>
 
-      <View style={styles.items}>
-      {/* This is where the tasks will be */}
-      </View>
 
       </View>
     )
@@ -20,7 +24,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container:{
-    paddingTop: 35,
     flex:1,
     backgroundColor: '#E8EAED'
   },
