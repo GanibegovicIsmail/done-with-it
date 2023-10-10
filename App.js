@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Platform, TextInput } from 'react-native'
+import { Text, View, StyleSheet, Platform, TextInput, Keyboard  } from 'react-native'
 import React, {useState} from 'react'
 import Task from './components/Task'
 import { KeyboardAvoidingView } from 'react-native'
@@ -6,9 +6,12 @@ import { TouchableOpacity } from 'react-native'
 
 export default function App() {
   const[task, setTask] = useState()
+  const[taskItems, setTaskItems] = useState([])
 
   const handleAddTask = () =>{
-    console.log(task)
+    Keyboard.dismiss()
+    setTaskItems([...taskItems, task])
+    setTask(null)
   }
 
     return (
@@ -20,8 +23,11 @@ export default function App() {
 
             <View style={styles.items}>
             {/* This is where the tasks will be */}
-              <Task text={'Task 1'}/>
-              <Task text={'Task 2'}/>
+            {
+              taskItems.map((item,index) =>{
+                return <Task key={index} text={item}></Task>
+              })
+            }
             </View>
 
         </View>
