@@ -1,10 +1,16 @@
 import { Text, View, StyleSheet, Platform, TextInput } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import Task from './components/Task'
 import { KeyboardAvoidingView } from 'react-native'
 import { TouchableOpacity } from 'react-native'
 
 export default function App() {
+  const[task, setTask] = useState()
+
+  const handleAddTask = () =>{
+    console.log(task)
+  }
+
     return (
       <View style={styles.container}>
 
@@ -22,9 +28,9 @@ export default function App() {
 
       {/* Write a task */}
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.writeTaskWrapper}>
-        <TextInput style={styles.input} placeholder="Write a task" />
+        <TextInput style={styles.input} placeholder={"Write a task"} value={task} onChangeText={text => setTask(text)}/>
 
-        <TouchableOpacity >
+        <TouchableOpacity onPress={() => handleAddTask()}>
         <View style={styles.addWrapper}>
           <Text style={styles.addText}>+</Text>
         </View>
