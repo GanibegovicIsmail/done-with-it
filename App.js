@@ -44,8 +44,6 @@ export default function App() {
     setTaskItems(itemsCopy);
   };
 
-  const handleTaskCompleted = () => {};
-
   const handleDeleteTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
@@ -64,6 +62,8 @@ export default function App() {
                 <Task
                   zaba={item}
                   onPressDelete={() => handleDeleteTask(index)}
+                  onPressComplete={handleTaskCompleted}
+                  index={index}
                 />
               </TouchableOpacity>
             );
