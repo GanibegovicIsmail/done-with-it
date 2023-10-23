@@ -47,7 +47,6 @@ export default function App() {
   const handleTaskCompleted = () => {};
 
   const handleDeleteTask = (index) => {
-    console.log("Deleting task at index:", index);
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
@@ -58,18 +57,18 @@ export default function App() {
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
 
-        <View style={styles.items}>
+        <TouchableOpacity style={styles.items}>
           {taskItems.map((item, index) => {
             return (
-              <View key={index}>
+              <TouchableOpacity key={index}>
                 <Task
                   zaba={item}
                   onPressDelete={() => handleDeleteTask(index)}
                 />
-              </View>
+              </TouchableOpacity>
             );
           })}
-        </View>
+        </TouchableOpacity>
 
         {/* {posts.map((post, index) => {
           //TODO: ako je index < 11 ispisati ako ne ne ispisati

@@ -10,9 +10,9 @@ const Task = (props) => {
     <View style={styles.item} onPress={props.funckija}>
       <View style={styles.itemLeft}>
         <View style={styles.square}></View>
-        <Text style={{ color: isActive ? "green" : "red" }}>{name}xxx</Text>
+        <Text style={{ color: isActive ? "green" : "red" }}>{name}</Text>
       </View>
-      <TouchableOpacity style={styles.close} onPress={onPressDelete}>
+      <TouchableOpacity style={styles.close} onPress={props.onPressDelete}>
         <Ionicons name="close-outline" size={24} color={"red"} />
       </TouchableOpacity>
     </View>
