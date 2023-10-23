@@ -46,6 +46,13 @@ export default function App() {
 
   const handleTaskCompleted = () => {};
 
+  const handleDeleteTask = (index) => {
+    console.log("Deleting task at index:", index);
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.taskWrapper}>
@@ -55,7 +62,10 @@ export default function App() {
           {taskItems.map((item, index) => {
             return (
               <View key={index}>
-                <Task zaba={item} funckija={handleTaskCompleted}></Task>
+                <Task
+                  zaba={item}
+                  onPressDelete={() => handleDeleteTask(index)}
+                />
               </View>
             );
           })}
@@ -76,7 +86,6 @@ export default function App() {
         })} */}
       </View>
 
-      {/* Write a task */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeTaskWrapper}

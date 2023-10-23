@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Task = (props) => {
-  const { name, isActive } = props.zaba;
+  const { name, isActive, onPressDelete } = props.zaba; //1 dodao onPressDelete prop
 
   return (
     <View style={styles.item} onPress={props.funckija}>
@@ -12,9 +12,9 @@ const Task = (props) => {
         <View style={styles.square}></View>
         <Text style={{ color: isActive ? "green" : "red" }}>{name}xxx</Text>
       </View>
-      <View style={styles.close}>
+      <TouchableOpacity style={styles.close} onPress={onPressDelete}>
         <Ionicons name="close-outline" size={24} color={"red"} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
