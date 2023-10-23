@@ -28,13 +28,7 @@ export default function App() {
 
   const handleAddTask = () => {
     Keyboard.dismiss();
-    setTaskItems([
-      ...taskItems,
-      {
-        name: task,
-        isActive: true,
-      },
-    ]);
+    setTaskItems([...taskItems, task]);
     setTask(null);
   };
 
@@ -44,24 +38,24 @@ export default function App() {
     setTaskItems(itemsCopy);
   };
 
-  const handleTaskCompleted = () => {};
-
   return (
     <View style={styles.container}>
+      {/* Todays tasks */}
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
 
         <View style={styles.items}>
+          {/* This is where the tasks will be */}
           {taskItems.map((item, index) => {
             return (
-              <View key={index}>
-                <Task zaba={item} funckija={handleTaskCompleted}></Task>
-              </View>
+              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+                <Task text={item}></Task>
+              </TouchableOpacity>
             );
           })}
         </View>
 
-        {/* {posts.map((post, index) => {
+        {posts.map((post, index) => {
           //TODO: ako je index < 11 ispisati ako ne ne ispisati
           if (post.title.includes("odio")) return <Text>Loading</Text>;
           if (post.title.includes("odios")) return;
@@ -73,7 +67,7 @@ export default function App() {
               </Text>
             </View>
           );
-        })} */}
+        })}
       </View>
 
       {/* Write a task */}
@@ -143,3 +137,19 @@ const styles = StyleSheet.create({
   },
   addText: {},
 });
+
+//Zadatak
+const tasks = [
+  {
+    id: 1,
+    name: "Learn JavaScript",
+    status: "done",
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: "Learn TypeScript",
+    status: "done",
+    isActive: true,
+  },
+];

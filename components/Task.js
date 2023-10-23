@@ -1,15 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Task = (props) => {
+  const { name, isActive } = props.zaba;
+
   return (
-    <View style={styles.item}>
+    <View style={styles.item} onPress={props.funckija}>
       <View style={styles.itemLeft}>
         <View style={styles.square}></View>
-        <Text style={styles.text}>{props.text}</Text>
+        <Text style={{ color: isActive ? "green" : "red" }}>{name}xxx</Text>
       </View>
-      <View style={styles.circular}></View>
+      <View style={styles.close}>
+        <Ionicons name="close-outline" size={24} color={"red"} />
+      </View>
     </View>
   );
 };
@@ -40,12 +45,9 @@ const styles = StyleSheet.create({
   text: {
     maxWidth: "80%",
   },
-  circular: {
-    width: 12,
-    height: 12,
-    borderColor: "#55BCF6",
-    borderWidth: 2,
-    borderRadius: 5,
+  close: {
+    height: 24,
+    width: 24,
   },
 });
 
