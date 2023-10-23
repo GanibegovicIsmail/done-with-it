@@ -38,7 +38,7 @@ export default function App() {
     setTask(null);
   };
 
-  const completeTask = (index) => {
+  const handleTaskCompleted = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
@@ -55,20 +55,18 @@ export default function App() {
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
 
-        <TouchableOpacity style={styles.items}>
+        <View style={styles.items}>
           {taskItems.map((item, index) => {
             return (
-              <TouchableOpacity key={index}>
+              <View key={index}>
                 <Task
                   zaba={item}
                   onPressDelete={() => handleDeleteTask(index)}
-                  onPressComplete={handleTaskCompleted}
-                  index={index}
                 />
-              </TouchableOpacity>
+              </View>
             );
           })}
-        </TouchableOpacity>
+        </View>
 
         {/* {posts.map((post, index) => {
           //TODO: ako je index < 11 ispisati ako ne ne ispisati

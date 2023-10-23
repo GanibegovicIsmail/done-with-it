@@ -1,32 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Task = (props) => {
-  const { name, isActive, onPressDelete, onPressComplete, index } = props.zaba;
-  //1 dodao onPressDelete, onPressComplete, index
-  const [isPressed, setIsPressed] = useState(false);
+  const { name, onPressDelete, onPressComplete, index } = props.zaba; //1 dodao onPressDelete prop
+  const [isActive, setIsActive] = useState(true);
 
   const handlePressSquare = () => {
-    setIsPressed(!isPressed);
-    onPressComplete(index);
+    setIsActive(!isActive);
   };
 
-  //2. Doda8 novi icon X i doda8 na square onPressComplete funkciju
   return (
     <View style={styles.item}>
-      <TouchableOpacity
-        style={[
-          styles.square,
-          { backgroundColor: isPressed ? "green" : "red" },
-        ]}
-        onPress={handlePressSquare}
-      />
       <View style={styles.itemLeft}>
+        <TouchableOpacity
+          style={[
+            styles.square,
+            { backgroundColor: isActive ? "green" : "red" },
+          ]}
+          onPress={() => {
+            handlePressSquare();
+          }}
+        />
         <Text style={{ color: isActive ? "green" : "red" }}>{name}</Text>
       </View>
-      <TouchableOpacity style={styles.close} onPress={onPressDelete}>
+      <TouchableOpacity style={styles.close} onPress={props.onPressDelete}>
         <Ionicons name="close-outline" size={24} color={"red"} />
       </TouchableOpacity>
     </View>
